@@ -1,0 +1,186 @@
+* git config
+  git config --global user.name "..."
+  git config --global user.email ...
+  git config --global core.editor ...
+  git config --global merge.tool ...
+  git config --list
+  git config user.name  --->  list user name
+
+* git init
+  
+* git add
+  1. git add [filename|directory]
+     将untracked file和modified file添加到暂存区中.若指定是文件夹,则该文件
+     夹中的所有文件都会添加到暂存区中.
+  2. Ignoreing Files
+     在".gitignore"文件中添加需要忽略的文件,可以是git在untracked的文件中不
+     列初这类文件.该文件与.git目录在同一个目录下.例如:
+     *.[oa]
+     *~
+     The rules for the patterns you can put in the .gitignore file are as follows:
+     + "#" 该符号以后的文字均为注释
+     + Standard glob patterns work.
+     + You can end patterns with a forward slash (/) to specify a directory.
+     + You can negate a pattern by starting it with an exclamation point (!).
+     + "*"匹配零个或多个字符
+     + "[abc]"表示匹配a,b,c中的任一个字符
+     + "?"匹配一个字符
+     + "[0-9]"表示匹配0到9之间的任一字符
+
+* git commit
+  1. git commit -m "messages"
+  2. git commit -a
+     不管文件是处在stage中还是修改后还未提交到stage中文件都一起提交.对于未
+     提交到stage中的文件不需要先用git add添加到stage中然后在通过git commit
+     提交.
+  3. git commit --amend
+     可以将上次提交时未提交并且未修改过的文件追加到上一次的提交上.使得这两次
+     提交如同一次提交一样.
+
+* git clone
+  1. git clone [url]
+     在当前目录下创建一个与url中名字相同的目录,并在该目录中初始化.git文件.
+     同时将所有的数据clone到该目录下.
+  2. git clone [url] directory
+     同上个命令的作用相同,只不过clone到目录directory下.
+
+* git status
+  
+* git diff
+  1. git diff
+     用于显示修改后并没有提交到stage中的文件与stage中该文件的修改部份.
+  2. git diff --cached/--staged
+     用于显示stage中的文件与上次提交时相比的修改部份.
+     
+* git rm 
+  1. git rm [file]
+     删除文件,该操作删除当前目录下的file并直接反映到stage中.等同于先用
+     rm命令将file从当前目录中删除,然后在将该删除操作提交到stage中.
+  2. git rm --cached [file]
+     并不是将file从目录中删除,而是将file从stage中删除,是git命令不追踪
+     file,即相当于在.gitignore文件中加入了file.
+
+* git mv
+  1. git mv file_from file_to
+     该操作等于如下的一系列操作:
+     mv file_from file_to
+     git rm file_from
+     git add file_to
+
+* git log
+  1. git log
+     以提交时间倒序的方式显示提交消息.
+  2. 常用选项
+     | -p               | Show the patch introduced with each commit.                                        |
+     | --word-diff      | Show the patch in a word diff format.                                              |
+     | --stat           | Show statistics for files modified in each commit.                                 |
+     | --shortstat      | Display only the changed/insertions/deletions line from the --stat command.        |
+     | --name-only      | Show the list of files modified after the commit information.                      |
+     | --name-status    | Show the list of files affected with added/modified/deleted information as well.   |
+     | --abbrev-commit  | Show only the first few characters of the SHA-1 checksum instead of all 40.        |
+     | --relative-date  | Display the date in a relative format (for example, “2 weeks ago”) .               |
+     | --graph          | Display an ASCII graph of the branch and merge history beside the log output.      |
+     | --pretty         | Show commits in an alternate format.Options (oneline,short,full,fuller,and format) |
+     | --oneline        | A convenience option short for --pretty=oneline --abbrev-commit.                   |
+     | -(n)             | Show only the last n commits                                                       |
+     | --since, --after | on-or-after the specified date/time.                                               |
+     | --until,--before | on-or-before the specified date/time.                                              |
+     | --author         |                                                                                    |
+     | --committer      |                                                                                    |
+
+* git reset HEAD <file>...
+  
+* git checkout 
+  1. git checkout -- <file>...
+     放弃对文件file的修改.
+  2. git checkout [branch-name]
+     切换到分支branch-name.
+  3. git checkout -b [branch-name]
+     创建分支branch-name并切换到该分支.等同于如下的命令组:
+     git branch [branch-name]
+     git checkout [branch-name]
+  4. git checkout -b [branch-name] [remote-name/branch-name] 
+     在本地为fetch下的远程分支创建一个可修改的分支.通过该命令会将
+     本地的branch-name和远程的branch-name对应,这样在本地的分支
+     branch-name上使用git pull或git push不需要加上远程分支名即可
+     自动对应到远程的相应分支.
+
+* git remote
+  1. git remote
+     查看远程仓库在本地的别名.
+  2. git remote -v
+     查看远程仓库的地址以及本地的别名.
+  3. git remote add [shortname] [url]
+     增加一个地址为url在本地的别名为shortname的远程仓库.
+  4. git remote show [remote-name]
+     查看远端服务器上仓库的更多信息.
+  5. git remote rename [old_name] [new_name]
+     将远端服务器地址在本地的别名由old_name改为new_name.
+  6. git remote rm [remote-name]
+     删除本地的一个远端服务器在本地的别名
+
+* git fetch
+  1. git fetch [remote-name]
+     取当前服务端存在而本地不存在的数据到本地.值得注意的是:fetch命令只会
+     将数据取到本地,并不会自动的合并本地当前所操作或修改的文件.如果fetch下
+     一个新的分支到本地,该分支不能被修改,必须先将该分支合并到一个可以修改
+     的分支,或通过git checkout -b [branch-name] [remote-name/branch-name]
+     命令为fetch下的分支创建一个在本地可以修改的分支.
+
+* git pull
+  1. git pull [remote-name]
+     取当前服务端存在而本地不存在的数据到本地,并会自动合并本地当前正在操作
+     或修改的文件.
+
+* git push
+  1. git push [remote-name] [branch-name[:remote-branch-name]]
+     将本地的branch-name分支push到远程的remote-name服务器上,可以指定远程
+     分支名为remote-branch-name,也可以不指定.
+  2. git push [remote-name] :[remote-branch-name]
+     删除远端的remote-branch-name分支.
+  3. git push [remote-name] [tag-name]
+     将在本地设置的标签tag-name push到服务端.
+  4. git push [remote-name] --tags
+     将在本地设置的所有标签都push到服务端.
+
+* git tag
+  1. git tag
+     列出所有的标签.
+  2. git tag -l "v1.4.2.*"
+     列出指定的标签
+  3. git tag -a [tag-name] -m "message" [commit-checksum]
+     在检验和为commit-checksum的提交上创建一个annotate标签.若commit-checksum
+     省去则表明在最后一次提交上创建标签.
+  4. git tag [tag-name]
+     创建一个lightweight标签.
+
+* git show
+  1. git show [tag-name]
+     显示标签名为tag-name的信息.
+
+* git branch
+  1. git branch
+     简单的列出本地存在的所有分支.
+  2. git branch -v
+     列出本地每个分支及对应的最后一次提交的信息.
+  3. git branch --merged/--no-merged
+     列出合并到/未合并到当前分支的分支.
+  4. git branch [branch-name]
+     创建一个名为branch-name的新分支.
+  5. git branch -d [branch-name]
+     删除分支branch-name.
+
+* git merge
+  1. git merge [branch-name]
+     将分支branch-name合并到当前分支.
+
+* git rebase
+  1. git rebase [branch-name]
+     将当前分支中的自当前分支和branch-name分支的共同祖先开始所做的
+     修改运用到branch-name分支中.
+     该命令的功能于git merge相似,不过通过该命令合并的分支看上去就像
+     一条线下来的.
+  2. git rebase --onto [branch1] [branch2] [branch3]
+     将自branch2和branch3的共同祖先之后branch3的修改部份运用到branch1中.
+  3. git rebase [branch1] [branch2]
+     将自branch1和branch2的共同祖先之后branch2的修改部份运用到branch1中.
