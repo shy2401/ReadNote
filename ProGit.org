@@ -43,6 +43,9 @@
      同时将所有的数据clone到该目录下.
   2. git clone [url] directory
      同上个命令的作用相同,只不过clone到目录directory下.
+  3. git clone [url] -b [remote-branch]
+     直接clone指定的远程分支到本地.
+
 
 * git status
   
