@@ -1,0 +1,52 @@
+* Chapter 3. Syntax and Style
+** Variable assignment
+   1. y = (x = x + 1) #assignments not expressions, this returns invalid syntax error
+   2. do not support ++x, x++, --x, x--
+   3. multi assignment:
+      - x = y = z = 1
+      - x, y, z = 1, 2, 'a string'  ----> recommand (x, y, z) = (1, 2, "a string")
+      - (x, y) = (y, x)   # swapping variables
+
+** Special Underscore Identifiers
+   1. __xxx do not import with 'from module import *'
+   2. __xxx__ system-defined name
+   3. __xxx request private name mangling in class
+
+** Module Structure and Layout
+   1. __name__ contains module name if imported
+   2. __name__ contains '__main__' if executed directly
+
+* Chapter 4. Python Object
+** Standard Type Operators and Built-In Functions
+   | operator/function     | description              | result      |
+   | string representation |                          |             |
+   | ``                    | string representation    | string      |
+   | built-in functions    |                          |             |
+   | cmp(obj1, obj2)       | compares two objects     | interger    |
+   | repr(obj)             | string representation    | string      |
+   | str(obj)              | string representation    | string      |
+   | type(obj)             | determines object type   | type object |
+   | value comparisons     |                          |             |
+   | <                     | less than                | Boolean     |
+   | >                     | greater than             | Boolean     |
+   | <=                    | less than or equal to    | Boolean     |
+   | >=                    | greater than or equal to | Boolean     |
+   | ==                    | equal to                 | Boolean     |
+   | !=                    | not equal to             | Boolean     |
+   | <>                    | not equal to             | Boolean     |
+   | object comparisons    |                          |             |
+   | is                    | the same as              | Boolean     |
+   | is not                | not the same as          | Boolean     |
+   | Boolean operators     |                          |             |
+   | not                   | logical negation         | Boolean     |
+   | and                   | logical conjuction       | Boolean     |
+   | or                    | logical disjunction      | Boolean     | 
+  
+** Categorizing the Standard Types
+   | Data Type    | Storage Model  | Update Model | Access Modes |
+   | numbers      | literal/scalar | immutable    | direct       |
+   | strings      | literal/scalar | immutable    | sequence     |
+   | lists        | container      | mutable      | sequence     |
+   | tuples       | container      | immutable    | sequence     |
+   | dictionaries | container      | mutable      | mapping      |
+
