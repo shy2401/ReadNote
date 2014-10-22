@@ -50,3 +50,10 @@
    | tuples       | container      | immutable    | sequence     |
    | dictionaries | container      | mutable      | mapping      |
 
+* Chapter 5. Numbers
+** Complex Number Attributes
+   | attribute       | desciption                                |
+   | num.real        | real component of complex number num      |
+   | num.imag        | imaginary component of complex number num |
+   | num.conjugate() | returns complex conjugate of num          |
+
