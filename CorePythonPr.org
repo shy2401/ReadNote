@@ -19,6 +19,7 @@
 * Chapter 4. Python Object
 ** Standard Type Operators and Built-In Functions
    | operator/function     | description              | result      |
+   |-----------------------+--------------------------+-------------|
    | string representation |                          |             |
    | ``                    | string representation    | string      |
    | built-in functions    |                          |             |
@@ -44,6 +45,7 @@
   
 ** Categorizing the Standard Types
    | Data Type    | Storage Model  | Update Model | Access Modes |
+   |--------------+----------------+--------------+--------------|
    | numbers      | literal/scalar | immutable    | direct       |
    | strings      | literal/scalar | immutable    | sequence     |
    | lists        | container      | mutable      | sequence     |
@@ -56,4 +58,130 @@
    | num.real        | real component of complex number num      |
    | num.imag        | imaginary component of complex number num |
    | num.conjugate() | returns complex conjugate of num          |
+
+** Most commonly used functions in the random module
+   | randint() | takes two inter values and returns a random integer between those values inclusive  |
+   | uniform() | does almost the samething as randint(),but returns a float and is inclusive only of |
+   |           | the smaller number(exclusive of the lagernumber)                                    |
+   | random()  | works just like uniform() except that the smaller number if fixed at 0.0, and the   |
+   |           | larger number is fixed at 1.0                                                       |
+   | choice()  | given a sequence, randomly selects and returns a sequence item                      |
+
+** Operators and Built-in Functions for All Numeric Types
+   | Operator/built-in | Description        | int | long | float   | complex | Result   |
+   |-------------------+--------------------+-----+------+---------+---------+----------|
+   | abs()             | absolute value     | *   | *    | *       | *       | numbera  |
+   | chr()             | character          | *   | *    |         |         | string   |
+   | coerce()          | numeric coercion   | *   | *    | *       | *       | tuple    |
+   | complex()         | complex conversion | *   | *    | *       | *       | complex  |
+   | divmod()          | division/modulo    | *   | *    | *       | *       | tuple    |
+   | float()           | float conversion   | *   | *    | *       | *       | float    |
+   | hex()             | hexadecimal string | *   | *    |         |         | string   |
+   | int()             | int conversion     | *   | *    | *       | *       | int      |
+   | long()            | long conversion    | *   | *    | *       | *       | long     |
+   | oct()             | octal string       | *   | *    |         |         | string   |
+   | ord()             | ordinal            |     |      | (strig) |         | int      |
+   | pow()             | exponentiation     | *   | *    | *       | *       | number   |
+   | round()           | float rounding     |     |      | *       |         | float    |
+   | **                | exponentiation     | *   | *    | *       | *       | number   |
+   | +                 | no change          | *   | *    | *       | *       | number   |
+   | -                 | negation           | *   | *    | *       | *       | number   |
+   | ~                 | bit inversion      | *   | *    |         |         | int/long |
+   | **                | exponentiation     | *   | *    | *       | *       | number   |
+   | *                 | multiplication     | *   | *    | *       | *       | number   |
+   | /                 | division           | *   | *    | *       | *       | number   |
+   | %                 | modulo/remainder   | *   | *    | *       | *       | number   |
+   | +                 | p\addition         | *   | *    | *       | *       | number   |
+   | -                 | subtraction        | *   | *    | *       | *       | number   |
+   | <<                | bit left shift     | *   | *    |         |         | int/long |
+   | >>                | bit right shift    | *   | *    |         |         | int/long |
+   | &                 | bitwise AND        | *   | *    |         |         | int/long |
+   | ^                 | bitwise XOR        | *   | *    |         |         | int/long |
+   | |                 | bitwise OR         | *   | *    |         |         | int/long |
+
+* Chapter 6. Sequences: Strings, Lists, and Tuples
+** Sequences
+*** Sequence Type operators(operators supporte all sequence types)
+    | Seuqunce Operator | Function                                     |
+    |-------------------+----------------------------------------------|
+    | seq[ind]          | element located at index ind of seq          |
+    | seq[ind1:ind2]    | elements from ind1 to ind2 of seq            |
+    | seq * expr        | seq repeated expr times                      |
+    | seq1 + seq2       | concatenates sequences seq1 and seq2         |
+    | obj in seq        | tests if obj is a member of sequence seq     |
+    | obj not in seq    | tests if obj is not a member of sequence seq |
+
+*** Sequence Type Conversion Built-in Function
+    | Function   | Operation              |
+    |------------+------------------------|
+    | list(seq)  | converts seq to list   |
+    | str(obj)   | converts obj to string |
+    | tuple(seq) | converts seq to tuple  |
+
+*** Sequence Type operational Built-in Functions
+    | Function | Operation                              |
+    |----------+----------------------------------------|
+    | len(seq) | return length (number of items) of seq |
+    | max(seq) | return "largest" element in seq        |
+    | min(seq) | return "smallest" element in seq       |
+
+** Strings
+*** String-only Operators
+    1. Formate Operator(%)
+       - format_string % (arguments_to_convert)
+       - input arguments(arguments_to_convert) can be tuple or dictionary
+    2. Raw String Operator(r/R)
+    3. Unicode String Operator(u/U)
+*** Built-in Funcions
+    1. com()
+    2. len()
+    3. max()
+    4. min()
+    5. raw_input()
+*** String Built-in Methods
+    1. string.capitalize()
+    2. string.center(width)
+    3. string.count(str, beg = 0, end = len(string))
+    4. string.encode(encoding = 'UTF-8', errors = 'strict')
+    5. string.endswith(str, beg = 0, end = len(string))
+    6. string.expandtabs(tabsize = 8)
+    7. string.find(str, beg = 0, end = len(string))
+    8. string.index(str, beg = 0, end = len(string))
+    9. string.isalnum()
+    10. string.isalpha()
+    11. string.isdecimal()
+    12. string.isdigit()
+    13. string.islower()
+    14. string.isnumeric()
+    15. string.isspace()
+    16. string.istitle()
+    17. string.isupper()
+    18. string.join(seq)
+    19. string.ljust(width)
+    20. string.lower()
+    21. string.lstrip()
+    22. string.replace(str1, str2, num = string.count(str1))
+    23. string.rfind(str, beg = 0, end = len(string))
+    24. string.rindex(str, beg = 0, end = len(string))
+    25. string.rjust(width)
+    26. string.rstrip()
+    27. string.split(str = "", num = string.count(str))
+    28. string.splitlines(num = string.count('\n'))
+    29. string.startswith(str, beg = 0, end = len(string))
+    30. string.strip([obj])
+    31. string.swapcase()
+    32. string.title()
+    33. string.translate(str, del = "")
+    34. string.upper()
+    35. string.zfill(width)
+
+*** 
+
+
+
+
+
+
+
+
 
