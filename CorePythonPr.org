@@ -130,6 +130,20 @@
     1. Formate Operator(%)
        - format_string % (arguments_to_convert)
        - input arguments(arguments_to_convert) can be tuple or dictionary
+       - Format Operator Conversion Symbols
+         1. %c
+         2. %s
+         3. %i
+         4. %d
+         5. %u
+         6. %o
+         7. %x
+         8. %X
+         9. %e
+         10. %E
+         11. %f
+         12. %g
+         13. %G
     2. Raw String Operator(r/R)
     3. Unicode String Operator(u/U)
 *** Built-in Funcions
@@ -175,6 +189,7 @@
     34. string.upper()
     35. string.zfill(width)
 
+** Lists
 *** 
 
 
