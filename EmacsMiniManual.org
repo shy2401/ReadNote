@@ -1,0 +1,426 @@
+* Built-in help system
+  1. C-h m
+     - runs describe-mode to see all the key bindings and documentations of current major mode and minor modes of a buffer
+  2. C-h w
+     - runs where-is to get which keystrokes invoke a given command
+  3. C-h c
+     - runs describe-key-briefly to find out what command is bound to a key.
+  4. C-h k
+     - runs describe-key to find out what command is bound to a key, along with the documention of the command.
+  5. C-h e 
+     - runs view-echo-area-messages, allow you to see the logging of echo area message.
+  6. C-h v
+     - runs describe-variable, and ask you for a varibale; you can TAB to complete a variable.
+  7. C-h C-h
+     - runs help-for-help.
+
+* Opening files
+  1. find-file-at-point
+     - this function opens the directory or file under point.
+
+* Buffer
+  |---------+---------------------------------------------------|
+  | Key     | Binding                                           |
+  |---------+---------------------------------------------------|
+  | C-x C-s | Command: save-buffer                              |
+  |         | Save the buffer at point                          |
+  |---------+---------------------------------------------------|
+  | C-x C-w | Command: write-file                               |
+  |         | Save the buffer to a different file               |
+  |---------+---------------------------------------------------|
+  | C-x b   | Command: switch-to-buffer                         |
+  |         | Switch to a different buffer                      |
+  |---------+---------------------------------------------------|
+  | C-x k   | Command: kill-buffer                              |
+  |         | Kill a buffer. RET to kill the current active one |
+  |---------+---------------------------------------------------|
+
+* ibuffer
+  1. Filtering commands.
+     | Key | Bindings                       |
+     |-----+--------------------------------|
+     | / m | Add a filter by buffer mode    |
+     | / n | Add a filter by buffer name    |
+     | / c | Add a filter by buffer content |
+     | / f | Add a filter by filename       |
+     | / > | Add a filter by buffer size    |
+     | / < | Add a filter by buffer size    |
+     | / / | Remove all filters in effect   |
+  2. Filter group commands:
+     | Key | Bindings                            |
+     |-----+-------------------------------------|
+     | / g | Create a filter group from filters  |
+     | TAB | Move to next filter group           |
+     | M-p | Move to previous filter group       |
+     | / \ | Remove all active filter groups     |
+     | / S | Save the current groups with a name |
+     | / R | Restore previously saved groups     |
+     | / X | Delete previous saved groups        |
+  3. Sorting commands.
+     | Key | Bindings                          |
+     | ,   | Rotate between sorting modes      |
+     | s i | Reverse current sorting order     |
+     | s a | Sort buffers by alphabet          |
+     | s f | Sort buffers by filename          |
+     | s v | Sort buffers by last viewing time |
+     | s s | Sort buffers by size              |
+     | s m | Sort buffers by major modes       |
+  4. q  : quit ibuffer
+  
+* Bookmark: save locations across Emacs sessions with
+  | Key     | Binding                                                      |
+  |---------+--------------------------------------------------------------|
+  | C-x r m | Command: bookmark-set                                        |
+  |         | Set bookmark at point. After executing the command, a prompt |
+  |         | asks for a name. Enter the name and RET.                     |
+  |---------+--------------------------------------------------------------|
+  | C-x r b | Command: bookmark-jump                                       |
+  |         | Jump to a saved bookmark, specified by user. TAB for getting |
+  |         | bookmark list                                                |
+  |---------+--------------------------------------------------------------|
+  | C-x r l | Command: bookmark-bmenu-list                                 |
+  |         | Open the list of all bookmarks.                              |
+  1. A few useful key bindings when in bookmark-bmenu-list
+     | Key | Binding                                                         |
+     |-----+-----------------------------------------------------------------|
+     | RET | Open a bookmark                                                 |
+     |     | After you opened the bookmark, you can go back to bookmark list |
+     |     | by C-x r l.                                                     |
+     |-----+-----------------------------------------------------------------|
+     | l   | Open a bookmark and close other buffers.                        |
+     |-----+-----------------------------------------------------------------|
+     | n   | Go to next entry                                                |
+     |-----+-----------------------------------------------------------------|
+     | p   | Go to previous entry                                            |
+     |-----+-----------------------------------------------------------------|
+     | s   | Save the curret bookmark list to file.                          |
+     |-----+-----------------------------------------------------------------|
+     | o   | Open bookmark in other window and move point to it.             |
+     |-----+-----------------------------------------------------------------|
+     | C-o | Similar to o but point remains on the bookmark list.            |
+     |-----+-----------------------------------------------------------------|
+     | r   | Rename bookmark at point                                        |
+     |-----+-----------------------------------------------------------------|
+     | m   | Mark bookmark at point for displaying                           |
+     |-----+-----------------------------------------------------------------|
+     | v   | Dsiplay all marked bookmarks.                                   |
+     |-----+-----------------------------------------------------------------|
+     | d   | Flag bookmark for deletion                                      |
+     |-----+-----------------------------------------------------------------|
+     | x   | Delete flagged bookmarks.                                       |
+     |-----+-----------------------------------------------------------------|
+     | u   | Unmark marked or flagged bookmarks                              |
+
+* Useful built-in key bindings for navigation pairs
+  1. C-M-f
+     - binds to forward-sexp, move forward over a balanced expression
+  2. C-M-b
+     - binds to backward-sexp, move backward over a balanced expression
+  3. C-M-k
+     - binds to kill-sexp, kill balanced expression forward.
+  4. C-M-t
+     - binds to transpose-sexps, transpose expressions.
+  5. C-M-<SPC> or C-M-@
+     - binds to mark-sexp, put mark after following expression.
+
+* Basic editing commands
+  1. C-S-DEL
+     - Kill entire line.(remeber,DEL is <backspace> key)
+  2. M-\
+     - Kill all spaces at point.
+  3. M-SPC
+     - Kill all except one at point.
+  4. M-k
+     - Kill a sentence.
+** M-;
+   - quickly add comments or comment/uncomment code
+
+* Mark and region
+  1. C-SPC C-SPC
+     - Place a mark in buffer.
+  2. C-x C-x
+     - executes the command exchange-point-and-mark.
+
+* Incremental search
+  1. C-s then C-w
+     - selects content from point to end of a word. then search. 
+       C-w again feeds the world of next one.
+  2. more useful commands in Isearch mode.
+     | Key     | Binding                       |
+     |---------+-------------------------------|
+     | M-s o   | Command: occur                |
+     |         | Run occur                     |
+     |---------+-------------------------------|
+     | M-s h r | Command: highlight-regexp     |
+     |         | Highlight according to regexp |
+     |---------+-------------------------------|
+  3. Occur
+     - Command occur lists all line that match a string or a regexp and display the search
+       result in a buffer named *Occur*.
+     - use M-g n and M-g p to go to next/previous matches.
+     - use C-x z to repeat previous command(all previous commands). From now on, keep pressing
+       z to repeat previous commmand until your press a different character.
+     - Key bindings in occur:
+       | Key        | Binding                                                  |
+       |------------+----------------------------------------------------------|
+       | C-n        | Go to next line                                          |
+       |------------+----------------------------------------------------------|
+       | C-p        | Go to previous line                                      |
+       |------------+----------------------------------------------------------|
+       | <          | Go to beginning of buffer                                |
+       |------------+----------------------------------------------------------|
+       | >          | Go to end of buffer                                      |
+       |------------+----------------------------------------------------------|
+       | e          | Edit current *Occur* buffer                              |
+       |------------+----------------------------------------------------------|
+       | C-c C-c    | When finish with editing, C-c C-c to exit editing mode   |
+       |------------+----------------------------------------------------------|
+       | g          | If your searching file is updated, press g refreshes the |
+       |            | *Occur* buffer to reflect the changes                    |
+       |------------+----------------------------------------------------------|
+       | o          | Jump to the match and switch point                       |
+       |------------+----------------------------------------------------------|
+       | C-o        | Jump to the match but point remain                       |
+       |------------+----------------------------------------------------------|
+       | C-h m or h | show this table                                          |
+       |------------+----------------------------------------------------------|
+       | q          | quit *Occur* buffer                                      |
+
+* Query replace
+  1. M-%
+  2. press ! to replace all.
+
+* Grep
+  1. M-x rgrep
+  2. with C-u prefix, you can edit the constructed shell command line before it is executed.
+  3. key bindings for *grep* buffer
+     | Key       | Description                                                       |
+     |-----------+-------------------------------------------------------------------|
+     | TAB       | Go to next match, but do not display matched buffer               |
+     |-----------+-------------------------------------------------------------------|
+     | S-TAB     | Go to previous match, but do not display matched buffer           |
+     |-----------+-------------------------------------------------------------------|
+     | {         | Go to previour file, do not display matched buffer                |
+     |-----------+-------------------------------------------------------------------|
+     | }         | Go to next file, do not display matched buffer                    |
+     |-----------+-------------------------------------------------------------------|
+     | C-o       | Display matched location, but do not switch point to matched      |
+     |           | buffer(Only available in Emacs>24.3)                              |
+     |-----------+-------------------------------------------------------------------|
+     | n         | Display next matched buffer, but do not switch point              |
+     |-----------+-------------------------------------------------------------------|
+     | p         | Display previous matched buffer, but do not switch point          |
+     |-----------+-------------------------------------------------------------------|
+     | M-g n     | Display next matched buffer, switch point to matched position     |
+     |-----------+-------------------------------------------------------------------|
+     | M-g p     | Display previous matched buffer, switch point to matched position |
+     |-----------+-------------------------------------------------------------------|
+     | RET       | Display matched location, switch point to matched buffer          |
+     |-----------+-------------------------------------------------------------------|
+     | SPC       | Scroll down, equivalent to C-v                                    |
+     |-----------+-------------------------------------------------------------------|
+     | S-SPC     | Scroll up, equivalent to M-v                                      |
+     |-----------+-------------------------------------------------------------------|
+     | g         | Refresh the *grep* buffer with previously executed command        |
+     |-----------+-------------------------------------------------------------------|
+     | q         | Quit *grep* buffer                                                |
+     |-----------+-------------------------------------------------------------------|
+     | ?,h,C-h m | show this list                                                    |
+     
+* Registers
+** Save window configuration
+   | Key         | Binding                                                                    |
+   |-------------+----------------------------------------------------------------------------|
+   | C-x r w REG | Command: window-configuration-to-register                                  |
+   |             | Save the window configuration of current frame into register REG           |
+   |-------------+----------------------------------------------------------------------------|
+   | C-x r f REG | Command: frame-configuration-to-register                                   |
+   |             | Save the state of all frames, including all their windows, in register REG |
+   |-------------+----------------------------------------------------------------------------|
+   | C-x r j REG | Command: jump-to-register                                                  |
+   |             | Jump to a register REG                                                     |
+   |-------------+----------------------------------------------------------------------------|
+   - REG can be a letter(such as 'a') or a number(such as '1'); case matters, so register 'a' 
+     is not the same as register 'A'
+
+** Save text
+   | Key         | Binding                       |
+   |-------------+-------------------------------|
+   | C-x r s REG | Command: copy-to-register     |
+   |             | Copy region into register REG |
+   |-------------+-------------------------------|
+   | C-x r i REG | Command: insert-register      |
+   |             | Insert text from register REG |
+
+** Save rectangles
+   | Key         | Binding                                     |
+   |-------------+---------------------------------------------|
+   | C-x r r REG | Command: copy-rectangle-to-register         |
+   |             | Copy the region-rectangle into register REG |
+   |             | With C-u prefix, delete it as well          | 
+   - Insert the rectangle in register REG by C-x r i REG
+
+** Save position
+   | Key             | Binding                                                              |
+   |-----------------+----------------------------------------------------------------------|
+   | C-x r <SPC> REG | Command: point-to-register                                           |
+   |                 | Record the position of point and the current buffer in register REG  |
+   |-----------------+----------------------------------------------------------------------|
+   | C-x r j REG     | Command: jump-to-register                                            |
+   |                 | Jump to the position and buffer saved in register REG. If the buffer |
+   |                 | is killed, revisit the file and open the buffer, then jump.          |
+
+** Save numbers
+   | Key                    | Binding                                 |
+   |------------------------+-----------------------------------------|
+   | C-u number C-x r n REG | Command: number-to-register             |
+   |                        | Store number into register REG          |
+   |------------------------+-----------------------------------------|
+   | C-u number C-x r + REG | Command: increment-register             |
+   |                        | If REG contains a number, increment the |
+   |                        | number in that register by number.      |
+
+* Macro
+  | Key         | Binding               |
+  |-------------+-----------------------|
+  | f3 or C-x ( | Start recording macro |
+  |-------------+-----------------------|
+  | f4 or C-x ) | Stop recording macro  |
+  |-------------+-----------------------|
+  | C-x e or f4 | Playback macro        |
+  - C-u 0 f4 : repeat macro until the end of file.
+  - C-x C-k r  : run the last keyboard macro on each line that begins in the region.
+** Keyboard macro ring
+   | Key         | Binding                                              |
+   |-------------+------------------------------------------------------|
+   | C-x C-k C-k | Command: kmacro-end-or-call-macro-repeat             |
+   |             | Execute the keyboard macro at the head of ring       |
+   |-------------+------------------------------------------------------|
+   | C-x C-k C-n | Command: kmacro-cycle-ring-next                      |
+   |             | Rotate the keyboard macro ring to the next macro     |
+   |             | (defined earlier).                                   |
+   |-------------+------------------------------------------------------|
+   | C-x C-k C-p | Command: kmacro-cycle-ring-previous                  |
+   |             | Rotate the keyboard macro ring to the previous macro |
+   |             | (defined later)                                      |
+** The keyboard macro counter
+   | Key         | Binding                                                         |
+   |-------------+-----------------------------------------------------------------|
+   | <f3>        | Command: kmacro-start-macro-or-insert-counter                   |
+   |             | Insert the counter into the buffer and increase the counter     |
+   |             | by 1. This is only application when a macro is recording.       |
+   |-------------+-----------------------------------------------------------------|
+   | C-x C-k C-i | Command: kmacro-insert-counter                                  |
+   |             | Insert the counter of current macro into the buffer             |
+   |-------------+-----------------------------------------------------------------|
+   | C-x C-k C-c | Command: kmacro-set-counter                                     |
+   |             | Change the counter value of current macro                       |
+   |-------------+-----------------------------------------------------------------|
+   | C-x C-k C-a | Command: kmacro-add-counter                                     |
+   |             | Add a number to the current keyboard macro counter. C-u before  |
+   |             | running this command resets the counter back to previous value. |
+   |-------------+-----------------------------------------------------------------|
+   | C-x C-k C-f | Command: kmacro-set-format                                      |
+   |             | Specify the format for inserting the keyboard macro counter     | 
+   - Valid format specifications for C-x C-k C-f:
+     | Specification | Description                                                           |
+     |---------------+-----------------------------------------------------------------------|
+     | %o            | Insert base-eight representation of an integer.                       |
+     |---------------+-----------------------------------------------------------------------|
+     | %d            | Insert base-ten representation of an integer.                         |
+     |---------------+-----------------------------------------------------------------------|
+     | %x            | Insert base-sixteen representation of an integer.                     |
+     |---------------+-----------------------------------------------------------------------|
+     | %X            | '%x'uses lower case and '%X' uses upper case.                         |
+     |---------------+-----------------------------------------------------------------------|
+     | %c            | Insert the character which is the numberical value given.             |
+     |---------------+-----------------------------------------------------------------------|
+     | %e            | Insert exponential notation for a floating point number.              |
+     |---------------+-----------------------------------------------------------------------|
+     | %f            | Insert decimal-point notation for a floating point number.            |
+     |---------------+-----------------------------------------------------------------------|
+     | %g            | Insert notation for a floating point number, using either exponential |
+     |               | notation or decimal-point notation, whichever is shorter.             |
+     |---------------+-----------------------------------------------------------------------|
+     | %%            | Insert a single '%', This format specification is unusual in that it  |
+     |               | does not use a value.                                                 |
+** Macros with Variations
+   | Response | Action                                                       |
+   |----------+--------------------------------------------------------------|
+   | Y        | Finish this iteration normally and continue with the next.   |
+   |----------+--------------------------------------------------------------|
+   | N:       | Skip the rest of this iteration, and start the next.         |
+   |----------+--------------------------------------------------------------|
+   | RET      | Stop the macro entirely right now.                           |
+   |----------+--------------------------------------------------------------|
+   | C-l      | Redisplay the screen, then ask angain.                       |
+   |----------+--------------------------------------------------------------|
+   | C-r      | Start editing at point. C-M-c to go back to macro execution. |
+
+** Naming and Saving Macro
+   | Key       | Binding                                                         |
+   |-----------+-----------------------------------------------------------------|
+   | C-x C-k n | Command: kmacro-name-last-macr                                  |
+   |           | Give a command name(for the duration of the Emacs session)      |
+   |           | to the most recently defined keyboard macro.                    |
+   |-----------+-----------------------------------------------------------------|
+   | C-x C-k b | Command:kmacro-bind-to-key                                      |
+   |           | Bind the most recently defined keyboard macro to a key sequence |
+   |           | (for the duration of the session)                               |
+   |-----------+-----------------------------------------------------------------|
+   |           |                                                                 |
+   - a macro name can be found in M-x, and can be saved with M-x insert-kbc-macro.
+
+** Edit Keyboard Macro
+   | key                  | Binding                                           |
+   |----------------------+---------------------------------------------------|
+   | C-x C-k C-e          | Command: kmacro-edit-macro                        |
+   |                      | Edit the last defined keyboard macro              |
+   |----------------------+---------------------------------------------------|
+   | C-x C-k e name <RET> | Command: edit-kbd-macro                           |
+   |                      | Edit a previously defined keyboard macro name     |
+   |----------------------+---------------------------------------------------|
+   | C-x C-k l            | Command: kmacro-edit-lossage                      |
+   |                      | Treat the last 300 keystrokes as a keyboard macro |
+
+* Version control
+  | Key     | Binding                                                               |
+  |---------+-----------------------------------------------------------------------|
+  | C-x v v | Command: vc-next-action                                               |
+  |         | commits the current file                                              |
+  |---------+-----------------------------------------------------------------------|
+  | C-x v = | Command: vc-diff                                                      |
+  |         | Displays a diff showing the changes you've made to the current files. |
+  |---------+-----------------------------------------------------------------------|
+  | C-x v ~ | Command: vc-revision-other-window                                     |
+  |         | Prompts you for a version number and shows you that version of the    |
+  |         | current file in another window.                                       |
+  |---------+-----------------------------------------------------------------------|
+  | C-x v g | Command: vc-annotate                                                  |
+  |         | Displays an annotated version of the file showing, for each line,     |
+  |         | the commit where that line was last changed and by whom. On any       |
+  |         | line you can press l to view the log message for that commit or d     |
+  |         | to view the associated diff.                                          |
+  |---------+-----------------------------------------------------------------------|
+  | C-x v l | Command: vc-print-log                                                 |
+  |         | Displays a log of previous changes to the file. When point is on a    |
+  |         | particular log entry, you can press d to view the diff associated     |
+  |         | with that change or f to view that version of the file.               |
+  |---------+-----------------------------------------------------------------------|
+  | C-x v u | Command: vc-revert                                                    |
+  |         | Revert working copies of the selected fileset to their repository     |
+  |         | contents, This asks for confirmation if the buffer contents are not   |
+  |         | identical to the working revision(except for keyword expansion).      |
+
+* ggtags-mode
+  | Key     | Description                                     |
+  |---------+-------------------------------------------------|
+  | C-c M-f | Command: ggtags-find-file                       |
+  |---------+-------------------------------------------------|
+  | M-.     | jump to definition, M-. again jump to reference |
+  |---------+-------------------------------------------------|
+  | M-*     | go back to the previous place where you jumped. |
+  |---------+-------------------------------------------------|
+  | C-c M-h | view the history of where you were              |
+  |---------+-------------------------------------------------|
+  | C-c M-/ | list all the visited tags                       |

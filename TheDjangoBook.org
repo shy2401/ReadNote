@@ -1,0 +1,25 @@
+* Starting a Project
+  1. 命令
+     - django-admin startproject mysite
+  2. The startproject command creates a directory containing five files:
+     mysite/
+         manage.py
+         mysite/
+             __init__.py
+             settings.py
+             urls.py
+             wsgi.py
+     - mysite/: The outer mysite/ directory is just a container for your project. Its name doesn’t matter to Django; you can rename it to anything you like.
+     - manage.py: A command-line utility that lets you interact with this Django project in various ways. Type python manage.py help to get a feel for what it can do. You should never have to edit this file; it’s created in this directory purely for convenience.
+     - mysite/mysite/: The inner mysite/ directory is the actual Python package for your project. Its name is the Python package name you’ll need to use to import anything inside it (e.g. import mysite.settings).
+     - __init__.py: A file required for Python to treat the mysite directory as a package (i.e., a group of Python modules). It’s an empty file, and generally you won’t add anything to it.
+     - settings.py: Settings/configuration for this Django project. Take a look at it to get an idea of the types of settings available, along with their default
+     - urls.py: The URLs for this Django project. Think of this as the “table of contents” of your Django-powered site.
+     - wsgi.py: An entry-point for WSGI-compatible webservers to serve your project. See How to deploy with WSGI (https://docs.djangoproject.com/en/1.4/howto/deployment/wsgi/) for more details.
+  
+* Running the Development Server
+  1. 命令
+     - python manage.py runserver
+     - python manage.py runserver 8080
+     - python manage.py runserver 0.0.0.0:8080 (The IP address 0.0.0.0 tells the server to listen on any network interface)
+
