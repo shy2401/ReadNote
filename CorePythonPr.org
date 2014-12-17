@@ -190,7 +190,32 @@
     35. string.zfill(width)
 
 ** Lists
-*** 
+*** List Type Built-in Methods
+    1. list.append(obj)
+       - appends object obj to list
+    2. list.count(obj)
+       - returns count of how many times boj occurs in list
+    3. list.extend(seq)
+       - appends the contents of seq to list
+    4. list.index(obj)
+       - returns the lowest index in list that obj appears
+    5. list.insert(index, obj)
+       - inserts object obj into list at offset index
+    6. list.pop(index = -1)
+       - removes and returns last object or obj at offset index from list
+    7. list.remove(obj)
+       - removes object obj from list
+    8. list.reverse()
+       - reverses objects of list in place
+    9. list.sort([func])
+       - sorts objects of list, use compare func if given
+
+** Tuples
+*** empty Tuplues
+    1. (,)
+       - comma is necessary.
+
+
 
 
 
