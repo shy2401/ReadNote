@@ -13,9 +13,12 @@
      - runs describe-variable, and ask you for a varibale; you can TAB to complete a variable.
   7. C-h C-h
      - runs help-for-help.
+  8. the prefix key and C-h
+     - get a list of commands with that prefix
 
 * Opening files
   1. find-file-at-point
+     - M-x ffap
      - this function opens the directory or file under point.
 
 * Buffer
@@ -36,7 +39,13 @@
   |---------+---------------------------------------------------|
 
 * ibuffer
-  1. Filtering commands.
+  1. press m on multiple entries to perform various operations
+     - view: press A to view the marked buffers
+     - save: press S to save the marked buffers
+     - close: press D to close the marked buffers
+     - revert: press V to discard changes to the marked buffers
+     - unmarked: press u on the marked entries
+  2. Filtering commands.
      | Key | Bindings                       |
      |-----+--------------------------------|
      | / m | Add a filter by buffer mode    |
@@ -46,7 +55,7 @@
      | / > | Add a filter by buffer size    |
      | / < | Add a filter by buffer size    |
      | / / | Remove all filters in effect   |
-  2. Filter group commands:
+  3. Filter group commands:
      | Key | Bindings                            |
      |-----+-------------------------------------|
      | / g | Create a filter group from filters  |
@@ -56,7 +65,7 @@
      | / S | Save the current groups with a name |
      | / R | Restore previously saved groups     |
      | / X | Delete previous saved groups        |
-  3. Sorting commands.
+  4. Sorting commands.
      | Key | Bindings                          |
      | ,   | Rotate between sorting modes      |
      | s i | Reverse current sorting order     |
@@ -65,7 +74,7 @@
      | s v | Sort buffers by last viewing time |
      | s s | Sort buffers by size              |
      | s m | Sort buffers by major modes       |
-  4. q  : quit ibuffer
+  5. q  : quit ibuffer
   
 * Bookmark: save locations across Emacs sessions with
   | Key     | Binding                                                      |
@@ -145,15 +154,19 @@
   1. C-s then C-w
      - selects content from point to end of a word. then search. 
        C-w again feeds the world of next one.
+     - M-p moves to the previous input
+     - M-n moves to the next input
   2. more useful commands in Isearch mode.
-     | Key     | Binding                       |
-     |---------+-------------------------------|
-     | M-s o   | Command: occur                |
-     |         | Run occur                     |
-     |---------+-------------------------------|
-     | M-s h r | Command: highlight-regexp     |
-     |         | Highlight according to regexp |
-     |---------+-------------------------------|
+     | Key     | Binding                                         |
+     |---------+-------------------------------------------------|
+     | M-s o   | Command: occur                                  |
+     |         | Run occur                                       |
+     |---------+-------------------------------------------------|
+     | M-s h r | Command: highlight-regexp                       |
+     |         | Highlight according to regexp                   |
+     |---------+-------------------------------------------------|
+     | M-s h u | Command: unhighlight-regexp                     |
+     |         | Turn off highlighting strings that match regexp |
   3. Occur
      - Command occur lists all line that match a string or a regexp and display the search
        result in a buffer named *Occur*.
@@ -189,6 +202,7 @@
 * Query replace
   1. M-%
   2. press ! to replace all.
+  3. C-M-% : query and replace with regexp.
 
 * Grep
   1. M-x rgrep
@@ -279,6 +293,11 @@
    | C-u number C-x r + REG | Command: increment-register             |
    |                        | If REG contains a number, increment the |
    |                        | number in that register by number.      |
+
+* ggtags
+  | M-s s   | search the result of ggtags        |
+  | C-c M-h | veiw the history of where you were |
+  | C-c M-/ | list all the tags you visited      |
 
 * Macro
   | Key         | Binding               |
@@ -424,3 +443,12 @@
   | C-c M-h | view the history of where you were              |
   |---------+-------------------------------------------------|
   | C-c M-/ | list all the visited tags                       |
+
+* Basic movements
+  | C-M-f     | move forwad over a balanced expression that can be a pair or a symbol   |
+  | C-M-b     | move backward over a balanced expression that can be a pair or a symbol |
+  | C-M-k     | kill balanced expression forward that can be a pair or a symbol         |
+  | C-M-<SPC> | put mark after following expression that can be a pair or a symbol      |
+  | C-M-a     | which moves point to beginning of a function                            |
+  | C-M-e     | which moves point to end of a function                                  |
+  | C-M-h     | which put a region around whole current or following function           |
