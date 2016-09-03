@@ -215,13 +215,122 @@
     1. (,)
        - comma is necessary.
 
+* Chapter9. Files and Input/Output
+** File Built-in Methods
+   | File Object Method      | Operation                                                  |
+   |-------------------------+------------------------------------------------------------|
+   | file.close              | close file                                                 |
+   |-------------------------+------------------------------------------------------------|
+   | file.fileno()           | return integer file descriptor(FD) for file                |
+   |-------------------------+------------------------------------------------------------|
+   | file.flush()            | flush internal buffer for file                             |
+   |-------------------------+------------------------------------------------------------|
+   | file.isatty()           | return 1 if file is a tty-like device, 0 otherwise         |
+   |-------------------------+------------------------------------------------------------|
+   | file.read(size = -1)    | read all or size bytes of file as a string and return it   |
+   |-------------------------+------------------------------------------------------------|
+   | file.readline()         | read and return one line from file(include trailint "\n")  |
+   |-------------------------+------------------------------------------------------------|
+   | file.readlines()        | read and return all lines from file as a list(includes     |
+   |                         | all trailing "\n" characters)                              |
+   |-------------------------+------------------------------------------------------------|
+   | file.seek(off, whence)  | move to location within file, off bytes offset from whence |
+   |                         | (0==beginning of file, 1 == current location, or 2 == end  |
+   |                         | of file)                                                   |
+   |-------------------------+------------------------------------------------------------|
+   | file.tell()             | teturn current location within file                        |
+   |-------------------------+------------------------------------------------------------|
+   | file.truncate(size = 0) | truncate file to 0 or size bytes                           |
+   |-------------------------+------------------------------------------------------------|
+   | file.write(str)         | write string str to file                                   |
+   |-------------------------+------------------------------------------------------------|
+   | file.writelines(list)   | write list of strings to file                              |
 
+** File Built-in Attributes
+   | File Object Attribute | Description                                                    |
+   |-----------------------+----------------------------------------------------------------|
+   | file.closed           | 1 if file is closed, 0 otherwise                               |
+   |-----------------------+----------------------------------------------------------------|
+   | file.mode             | access mode with which file was opened                         |
+   |-----------------------+----------------------------------------------------------------|
+   | file.name             | name of file                                                   |
+   |-----------------------+----------------------------------------------------------------|
+   | file.softspace        | 0 if space explicitly required with print, 1 otherwise; rarely |
+   |                       | used by the programmer--generally for internal use only.       |
 
+** File System
+   1. os Module File/Directory Access Functions
+      | os Module File/Directory Function | Operation                               |
+      |-----------------------------------+-----------------------------------------|
+      | File Processing                   |                                         |
+      |-----------------------------------+-----------------------------------------|
+      | remove()/unlink()                 | delete file                             |
+      |-----------------------------------+-----------------------------------------|
+      | rename()                          | rename file                             |
+      |-----------------------------------+-----------------------------------------|
+      | *stat()                           | return file statistics                  |
+      |-----------------------------------+-----------------------------------------|
+      | symlink()                         | create symbolic link                    |
+      |-----------------------------------+-----------------------------------------|
+      | utime()                           | update time stamp                       |
+      |-----------------------------------+-----------------------------------------|
+      | Directories/Folders               |                                         |
+      |-----------------------------------+-----------------------------------------|
+      | chdir()                           | change working directory                |
+      |-----------------------------------+-----------------------------------------|
+      | listdir()                         | list files and directories in directory |
+      |-----------------------------------+-----------------------------------------|
+      | getcwd()                          | return current working directory        |
+      |-----------------------------------+-----------------------------------------|
+      | mkdir()/makedirs()                | create directory(ies)                   |
+      |-----------------------------------+-----------------------------------------|
+      | rmdir()/removedirs()              | remove directory(ies)                   |
+      |-----------------------------------+-----------------------------------------|
+      | pardir                            | variavle, contains the parent directory |
+      |                                   | string '..'                             |
+      |-----------------------------------+-----------------------------------------|
+      | Access/Permissions(available only | on Unix(U) or Windows(W))               |
+      |-----------------------------------+-----------------------------------------|
+      | access()                          | verify permission modes U               |
+      |-----------------------------------+-----------------------------------------|
+      | chmod()                           | change permission modes U W             |
+      |-----------------------------------+-----------------------------------------|
+      | umask()                           | set default permission modes U W        |
 
-
-
-
-
-
-
+   2. os.path Module Pathname Access Functions
+      | os.path Pathname Function | Operation                                     |
+      |---------------------------+-----------------------------------------------|
+      | Separation                |                                               |
+      |---------------------------+-----------------------------------------------|
+      | basename()                | remove directory path and return leaf name    |
+      |---------------------------+-----------------------------------------------|
+      | dirname()                 | remove leaf name and return directory path    |
+      |---------------------------+-----------------------------------------------|
+      | join()                    | join separate components into single pathname |
+      |---------------------------+-----------------------------------------------|
+      | split()                   | return (dirname(), basename()) tuple          |
+      |---------------------------+-----------------------------------------------|
+      | splitdrive()              | return (drivename, pathname) tuple            |
+      |---------------------------+-----------------------------------------------|
+      | splitext()                | return (filename, extension) tuple            |
+      |---------------------------+-----------------------------------------------|
+      | Information               |                                               |
+      |---------------------------+-----------------------------------------------|
+      | getatime()                | return last file access time                  |
+      |---------------------------+-----------------------------------------------|
+      | getmtime()                | return last file modification time            |
+      |---------------------------+-----------------------------------------------|
+      | getsize()                 | return file size(in bytes)                    |
+      |---------------------------+-----------------------------------------------|
+      | Inquiry                   |                                               |
+      |---------------------------+-----------------------------------------------|
+      | exists()                  | does pathname (file or directory) exist?      |
+      |---------------------------+-----------------------------------------------|
+      | isdir()                   | does pathname exist and is a directory?       |
+      |---------------------------+-----------------------------------------------|
+      | isfile()                  | does pathname exist and is a file?            |
+      |---------------------------+-----------------------------------------------|
+      | islink()                  | does pathname exist and is a symbolic link?   |
+      |---------------------------+-----------------------------------------------|
+      | samefile()                | do both pathnames point to the same file?     |
 

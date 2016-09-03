@@ -149,24 +149,35 @@
      - Place a mark in buffer.
   2. C-x C-x
      - executes the command exchange-point-and-mark.
-
+       
 * Incremental search
-  1. C-s then C-w
-     - selects content from point to end of a word. then search. 
+  1. C-s then 
+     - C-w : selects content from point to end of a word. then search. 
        C-w again feeds the world of next one.
      - M-p moves to the previous input
      - M-n moves to the next input
+     - C-M-w : selects constent at the point.(this is my own defined key binds)
   2. more useful commands in Isearch mode.
      | Key     | Binding                                         |
      |---------+-------------------------------------------------|
      | M-s o   | Command: occur                                  |
      |         | Run occur                                       |
      |---------+-------------------------------------------------|
+     | C-o     | Command: occur                                   |
+     | (own)   | Run occur                                        |
+     |---------+--------------------------------------------------|
+     | M-z     | kill the region between the mark and the closest |
+     | (own)   | portion of the isearch match string.             |
+     |---------+--------------------------------------------------|
+     | C-RET   | Exit isearch, but at the other end of the search |
+     | (own)   | string.                                          |
+     |---------+--------------------------------------------------|
      | M-s h r | Command: highlight-regexp                       |
      |         | Highlight according to regexp                   |
      |---------+-------------------------------------------------|
      | M-s h u | Command: unhighlight-regexp                     |
      |         | Turn off highlighting strings that match regexp |
+     |---------+--------------------------------------------------|
   3. Occur
      - Command occur lists all line that match a string or a regexp and display the search
        result in a buffer named *Occur*.
@@ -444,6 +455,7 @@
   |---------+-------------------------------------------------|
   | C-c M-/ | list all the visited tags                       |
 
+<<<<<<< Updated upstream
 * Basic movements
   | C-M-f     | move forwad over a balanced expression that can be a pair or a symbol   |
   | C-M-b     | move backward over a balanced expression that can be a pair or a symbol |
@@ -452,3 +464,108 @@
   | C-M-a     | which moves point to beginning of a function                            |
   | C-M-e     | which moves point to end of a function                                  |
   | C-M-h     | which put a region around whole current or following function           |
+=======
+* Next is my own definitions of key bindes
+
+** flymake mode (my own define)
+   1. C-`
+      - flymake-goto-next-error
+
+** smex mode
+   1. M-x
+      - smex, smex-major-mode-commands
+
+** hippie-expand
+   1. M-/
+      - hippie-expand
+
+** winner mode
+   1. C-x 4 u (C-c <left>)
+      - winner undo, return to the previous window layout
+   2. C-x 4 r (C-c <right>)
+      - winner redo
+
+** hs-minor-mode
+   | Key       | bounds                 |
+   |-----------+------------------------|
+   | C-c @ h   | hs-hide-block          |
+   |-----------+------------------------|
+   | C-c @ H   | hs-show-block          |
+   |-----------+------------------------|
+   | C-c @ s   | hs-hide-all            |
+   |-----------+------------------------|
+   | C-c @ S   | hs-show-all            |
+   |-----------+------------------------|
+   | C-c @ l   | hs-hide-level          |
+   |-----------+------------------------|
+   | C-c @ c   | hs-toggle-hiding       |
+   |-----------+------------------------|
+   | S-mouse-2 | hs-mouse-toggle-hiding | 
+
+** init-isearch
+   | M-z | delet the characters until next character you input |
+   |-----+-----------------------------------------------------|
+   | C-o | isearch occur                                       |
+   |-----+-----------------------------------------------------|
+
+** init-helm
+   1. gtags
+      | M-t     | helm-gtags-find-tag    |
+      |---------+------------------------|
+      | M-r     | helm-gtags-find-rtag   |
+      |---------+------------------------|
+      | M-s     | helm-gtags-find-symbol |
+      |---------+------------------------|
+      | C-t     | helm-gtags-pop-stack   |
+      |---------+------------------------|
+      | C-c C-f | helm-gtags-pop-stack   |
+      |---------+------------------------|
+   2. files
+      | C-x C-o | helm-find-files     |
+      |---------+---------------------|
+      | C-c f   | helm-for-files      |
+      |---------+---------------------|
+      | C-c y   | helm-c-yas-complete |
+      |---------+---------------------|
+      | C-c i   | helm-imenu          |
+      |---------+---------------------|
+      | C-x C-o | ffap                |
+
+** init-windows
+   | C-x | | split-window-horizontally-instead |
+   |-------+-----------------------------------|
+   | C-x _ | split-window-vertically-instead   |
+
+** init-sessions
+    1. 修改了desktop-save的值,修改为ask-if-new.用于在没有desktop
+       file的情况下询问,否则直接save.
+
+** init-fonts
+   1. C-M-= 
+      - increase-default-font-height
+   2. C-M--
+      - decrease-default-font-height
+
+** magit
+   | Key     | bounds                      |
+   |---------+-----------------------------|
+   | M-f12   | magit-status                |
+   |---------+-----------------------------|
+   | S-M-f12 | magit-status-somedir        |
+   |---------+-----------------------------|
+   | q       | magit-quit-session          |
+   |---------+-----------------------------|
+   | C-x v p | git-messenger:popup-message |
+   |---------+-----------------------------|
+   | C-x C-g | git-gutter:toggle           |
+   |---------+-----------------------------|
+   | C-x v = | git-gutter:popup-hunk       |
+   |---------+-----------------------------|
+   | C-x p   | git-gutter:previous-hunk    |
+   |---------+-----------------------------|
+   | C-x n   | git-gutter:next-hunk        |
+   |---------+-----------------------------|
+   | C-x v s | git-gutter:stage-hunk       |
+   |---------+-----------------------------|
+   | C-x v r | git-gutter:revert-hunk      |
+>>>>>>> Stashed changes
