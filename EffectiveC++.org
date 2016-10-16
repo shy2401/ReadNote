@@ -14,12 +14,73 @@
        + explicit 用来阻止构造函数被用来执行隐式类型转换,但它们仍可被用来进行显式
          类型转换.
   4. copy构造函数和copy assignment操作符
-     - 如果一个新对象被定义,则一个会有一个构造函数被调用,不可能调用赋值操作符.
+     - 如果一个新对象被定义,则一定会有一个构造函数被调用,不可能调用赋值操作符.
        例:Widget w3 = w2;   // 调用copy构造函数.
-     - Pass-by-value意味着"调用copy构造函数".
-       注:在调用函数时,对于参数相当于重新创建该参数对象,结合上一条即可理解为调用copy
-       构造函数.
+     - 如果没有新对象被定义,就不会有构造函数被调用.
+  5. Pass-by-value意味着"调用copy构造函数".
+     注:在调用函数时,对于参数相当于重新创建该参数对象,结合上一条即可理解为调用copy
+     构造函数.
 
+* 条款01:视C++为一个语言联邦
+  1. 对于内置类型而言pass-by-value通常比pass-by-reference高效.
+  2. 对于用户自定义类型,使用pass-by-reference-to-const往往更好.
 
+* 条款02:尽量以const,enum,inline替换#define
+  1. class的专属常量,在类中只是声明,需要在类外的非头文件中定义.
+     class GamePlayer {
+     private:
+         static const int NumTurns = 5;   // 常量声明式
+         int scores[NumTurns];
+         ...
+     };
+     const int GamePlayer::NumTurns; // NumTurns的定义
+     由于class常量已在声明时获得初值,因此定义式不可以再设初值.
+  2. 一个属于枚举类型的数值可全充ints被使用
+     class gamePlayer {
+     private:
+         enum { NumTurns = 5};
 
+         int scores[NumTurns];
+         ...
+     };
+  3. 对于单纯常量,最好以const对象或enums替换#defines
+  4. 对于形似函数的宏(macros),最好改用inline函数替换#defines
 
+* 条款03:尽可能使用const
+  1. 如果关键字const出现在星号左边,表示被指物是常量;如果出现在星号右边
+     ,表示指针自身是常量;如果出现在星号两边,表示被指物和指针都是常量.
+     const char* p = greeting;      // non-const pointer, const data
+     char const* p = greeting;      // non-const pointer, const data
+     char* const p = greeting;      // const pointer, non-const data
+     const char* const p = greeting // const pointer, const data
+  2. const成员函数
+     - 将const实施于成员函数的目的,是为了确认该成员函数可作用于const对象身上.
+     - const成员函数使class接口比较容易被理解.这是因为,得知哪个函数可以改动对象
+       内容而哪个函数不行,很是重要.
+     - const成员函数使"操作const对象"成为可能.
+     - 两个成员函数如果只是常量性(constness)不同,可以被重载
+     - 真实程序中const对象大多用于passed by pointer-to-const或passed by 
+       reference-to-const的传递结果.
+     - 如果函数的返回类型是个内置类型,那么改动函数返回值从来就不合法.
+     - 函数的返回值(by value)于形参相似,只是返回该类型的一个副本.
+     - mutable(可变的)释放掉non-static成员变量的bitwise constness约束.
+     - 使用non-const成员函数调用const成员函数是安全的.
+       const_cast<char&>(static_cast<const TextBlock&>(*this))
+     - const成员函数调用non-const成员函数是一种错误行为:因为对象有可能因此被改动.
+
+* 条款04:确定对象被使用前已被初始化
+  1. 对于无任何成员函数的内置类型,必需手动完成初始化.
+  2. 对于内置类型以外的,初始化责任落在构造函数身上.规则很简单:确保每一个构造函数都
+     将对象的每一个成员初始化.
+  3. C++规定,对象的成员变量的初始化动作发生在构造函数本体之前.对于内置类型,其获得的
+     初始化尸检不确定,视具体情况而定.
+  4. 如果成员变量是const或references,他们就一定需要初值(初始化),不能被赋值.
+  5. C++有着十分固定的"成员初始化次序".base classes更早于其derived classes被初始化,
+     而class的成员变量总是以其声明的次序被初始化.
+  6. 只有定义在函数内的static对象成为local static其余的都成为non-local static.
+  7. C++对"定义于不同编译单元内的non-local static对象"的初始化次序并无明确定义.
+  8. 将每个non-local static对象搬到自己的专属函数内.C++保证函数内的local static对象
+     会在"该函数被调用期间""首次遇上该对象之定义式"时被初始化.
+
+* 条款05:了解C++默默编写并调用哪些函数
+  1. 
