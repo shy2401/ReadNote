@@ -83,4 +83,17 @@
      会在"该函数被调用期间""首次遇上该对象之定义式"时被初始化.
 
 * 条款05:了解C++默默编写并调用哪些函数
-  1. 
+  1. 构造函数不能声明为const
+  2. 当一个class没有声明构造函数,copy构造函数,copy assignment函数,析构函数时,编译器会
+     自动声明一个默认的构造函数,所有这些函数都是public且inline.惟有当这些函数被调用时,
+     它们才会被编译器创建出来.
+  3. 编译器所产出的析构函数是个non-virtual,除非这个class的bass class自身声明有virtual
+     析构函数.
+  4. 只要class中声明了一个构造函数,编译器不会 再为它创建default函数.
+  5. 如果class中含有reference成员和const成员时,编译器不会自动生成copy assignment函数,
+     必须自己定义.
+  6. 如果某个base classs将copy assignment操作符声明为private,编译器将拒绝为其derived 
+     classes生成一个copy assignment操作符.
+
+* 条款06:若不想使用编译器自动生成的函数,就该明确拒绝
+  1.
