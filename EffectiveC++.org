@@ -96,4 +96,21 @@
      classes生成一个copy assignment操作符.
 
 * 条款06:若不想使用编译器自动生成的函数,就该明确拒绝
-  1.
+  1. 所有编译器生成的函数都是public.
+  2. 将copy构造函数或copy assignment操作符声明为private且故意不实现它们来阻止这些函数被
+     创建出来.
+  3. 函数的参数名并非必要的.
+
+* 条款07:为多态基类声明irtual析构函数
+  1. 任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数.
+  2. 欲实现出Virtual函数,对象必须携带某些信息,主要用来在运行期决定哪一个Virtual函数该被
+     调用这份信息通常是由一个所谓vptr(virtual table pointer)指针指出.vptr指向一个由函数
+     指针构成的数组,称为vtbl(virtual table),每一个带有virtual函数的class都有一个相应的
+     virtual.当对象调用某一个virtual函数,实际被调用的函数取决于该对象的vptr所指的那个vtbl
+  3. 当将析构函数声明为pure virtual时,必须为这个pure virtual析构函数提供一份定义.因为编译
+     器derived class的析构函数中创建一个对基类函数的调用动作.
+  4. Classes的设计目的如果不是作为base classes使用,或不是为了具备多态性(polymorphically),
+     就不该声明virtual析构函数.
+
+* 条款08:别让异常逃离析构函数
+  1. 
