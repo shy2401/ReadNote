@@ -113,4 +113,23 @@
      就不该声明virtual析构函数.
 
 * 条款08:别让异常逃离析构函数
+  1. 析构函数绝对不要吐出异常.如果一个被析构函数调用 的函数可能抛出异常,析构函数应该捕捉任何
+     异常,然后吞下它们(不传播)或结束程序.
+  2. 如果客户需要对某个操作函数运行期间抛出的异常做出反应,那么class应该提供一个普通函数(而非
+     在析构函数中)执行该操作.
+
+* 条款09:绝不在构造和析构过程中调用virtual函数
+  1. base class构造期间virtual函数绝对不会下降到derived classes阶层.
+  2. 在base class构造期间,virtual函数不是virtual函数.
+  3. 在derived class对象的base class构造期间,对象的类型时base class,而不是derived class.
+  4. 一旦derived class析构函数开始执行,对象内的derived class成员变量便呈现未定义值.所以C++
+     视它们仿佛不再存在.
+  5. static成员函数与static成员变量都是再类定义时定义的.存在静态内存区,在类未实例化前,只能
+     用静态成员函数操作.
+
+* 条款10:令operator=返回一个reference to *this
+  1. 重载的操作符的优先级及结合性不改变.
+  2. 赋值操作符必须返回一个 reference指向操作符的左侧实参.
+
+* 条款11:在operator=中处理"自我赋值"
   1. 
