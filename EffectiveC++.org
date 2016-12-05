@@ -132,17 +132,23 @@
   2. 赋值操作符必须返回一个 reference指向操作符的左侧实参.
 
 * 条款11:在operator=中处理"自我赋值"
-  1. Widget& Widget::operator=(const Widget& rhs)
+  1. 
+     #+BEGIN_SRC 
+     Widget& Widget::operator=(const Widget& rhs)
      {
          Widget temp(rhs);
          swap(temp);
          return *this;
      }
-  2. Widget& Widget::operator=(Widget rhs)
+     #+END_SRC
+  2. 
+     #+BEGIN_SRC 
+     Widget& Widget::operator=(Widget rhs)
      {
          swap(rhs);
          return *this;
      }
+     #+END_SRC
      - 某class的copy assignment操作符可能被声明为"以by value方式接受实参"
      - 以by value方式传递东西会造成一份复件/副本
   3. 确保当对象自我赋值时operator=有良好行为.其中技术包括比较"来源对象"和"目标对象"的地址,精心
