@@ -1,9 +1,5 @@
 # 目录
 
-## 计划
-
-### [2020](./plan/2020_plan.md)
-
 ## ReadNote
 
 ### [core_python](./ReadNote/core_python.org)
